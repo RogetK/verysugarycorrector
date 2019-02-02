@@ -8,12 +8,56 @@ stri = ""
 
 ser = serial.Serial("/dev/ttyAMA0", 115200)
 
+punctuation = ("Key.space", "Key.enter", "','", "'.'", "'!'", "'?'", "'''", "':'", "';'""'('", "')'", "'-'", "'_'", "'='", "'+'")
+
+punctuation2 = {"Key.space":32, "Key.enter":"10", "','": 44, "'.'": 46, "'!'": 33, "'?'": 63, "'''": 39, "':'": 58, "';'": 59, "'('": 40, "')'": 41, "'-'": 45, "'_'": 95, "'='": 61, "'+'": 43}
+
+def write_punct2(key):
+    if str(key) in punctuation2.keys:
+        code = punctuation2[str(key)]
+        ser.write(bytearray([17,code,18,code]))
+        ser.flush()
+
+def write_punct(key):
+    if str(key) == "Key.space":
+        ser.write(bytearray([17,32,18,32]))
+    elif str(key) == "Key.enter":
+        ser.write(bytearray([17,10,18,10]))
+    elif str(key) == "','":
+        ser.write(bytearray([17,44,18,44]))
+    elif str(key) == "'.'":
+        ser.write(bytearray([17,46,18,46]))
+    elif str(key) == "'!'":
+        ser.write(bytearray([17,33,18,33]))
+    elif str(key) == "'?'":
+        ser.write(bytearray([17,63,18,33]))
+    elif str(key) == "'''":
+        ser.write(bytearray([17,39,18,33]))
+    elif str(key) == "':'":
+        ser.write(bytearray([17,58,18,33]))
+    elif str(key) == "';'":
+        ser.write(bytearray([17,59,18,33]))
+    elif str(key) == "'('":
+        ser.write(bytearray([17,40,18,33]))
+    elif str(key) == "')'":
+        ser.write(bytearray([17,41,18,33]))
+    elif str(key) == "'-'":
+        ser.write(bytearray([17,45,18,33]))
+    elif str(key) == "'_'":
+        ser.write(bytearray([17,95,18,33]))
+    elif str(key) == "'='":
+        ser.write(bytearray([17,61,18,33]))
+    elif str(key) == "'+'":
+        ser.write(bytearray([17,43,18,33]))
+    ser.flush()
+    
+
 def on_press(key):
     global stri
     try:
         #print(key)
         #stri += key.char
-        if str(key) in ("Key.space", "Key.enter", "','", "'.'", ):
+        if str(key) in punctuation:
             print("{}".format(stri))
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 s.sendto(stri.encode(), (host,port))
@@ -40,18 +84,7 @@ def on_press(key):
                         ser.write(bytearray([18,]))
                         ser.write(char.encode())
                         ser.flush()
-                if str(key) == "Key.space":
-                    ser.write(bytearray([17,32,18,32]))
-                    ser.flush()
-                elif str(key) == "Key.enter":
-                    ser.write(bytearray([17,10,18,10]))
-                    ser.flush()
-                elif str(key) == "','":
-                    ser.write(bytearray([17,44,18,44]))
-                    ser.flush()
-                elif str(key) == "'.'":
-                    ser.write(bytearray([17,46,18,46]))
-                    ser.flush()
+                write_punct2(key)
                 stri = ""
                 print("stri: {}".format(stri))
             stri = ""
