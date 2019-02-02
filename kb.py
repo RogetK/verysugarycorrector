@@ -30,7 +30,7 @@ def on_press(key):
                     if i == 0:
                         text = sugg
                     print("Suggestion {}: '{}'".format(i, sugg))
-                if text != stri:
+                if text != stri and stri != "":
                     for i in range(0,len(stri)):
                         ser.write(bytearray([17,8,18,8]))
                         ser.flush()
