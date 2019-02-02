@@ -3,7 +3,7 @@
 import os, socket, time
 
 host = "127.0.0.1"
-port = 1234
+port = 1235
 
 from symspellpy.symspellpy import SymSpell, Verbosity  # import the module
 
