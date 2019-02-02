@@ -13,7 +13,7 @@ def on_press(key):
     try:
         #print(key)
         #stri += key.char
-        if str(key) in ('Key.space', 'Key.enter', 'Key.comma', 'Key.period', 'Key.backspace', 'Key.delete'):
+        if str(key) in ('Key.space', 'Key.enter', ',', '.', 'Key.backspace', 'Key.delete'):
             print("{}".format(stri))
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 s.sendto(stri.encode(), (host,port))
@@ -49,10 +49,10 @@ def on_press(key):
                 elif str(key) == 'Key.enter':
                     ser.write(bytearray([17,10,18,10]))
                     ser.flush()
-                elif str(key) == 'Key.comma':
+                elif str(key) == ',':
                     ser.write(bytearray([17,44,18,44]))
                     ser.flush()
-                elif str(key) == 'Key.period':
+                elif str(key) == '.':
                     ser.write(bytearray([17,46,18,46]))
                     ser.flush()
                 stri = ""
