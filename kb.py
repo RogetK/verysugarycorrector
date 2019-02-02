@@ -23,10 +23,10 @@ def on_press(key):
                 num = int(num.decode())
                 print("suggestion 0: '{}'".format(text))
                 print("num: {}".format(num))
-                for i in range(0, num):
+                for i in range(0, num-1):
                     sugg = s.recvfrom(1024)
                     sugg = sugg.decode()
-                    print("Suggestion {}: '{}'".format(num, sugg))
+                    print("Suggestion {}: '{}'".format(i, sugg))
                 if text != stri:
                     for i in range(0,len(stri)):
                         ser.write(bytearray([17,8,18,8]))
@@ -40,6 +40,9 @@ def on_press(key):
                 ser.write(bytearray([17,32,18,32]))
                 ser.flush()
                 stri = ""
+                print("stri: {}".format(stri))
+            stri = ""
+            print("stri: {}".format(stri))
         elif str(key) == 'Key.backspace':
             ser.write(bytearray([17,8,18,8]))
             ser.flush()
