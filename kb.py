@@ -26,7 +26,7 @@ def on_press(key):
                 for i in range(0, num-1):
                     sugg = s.recvfrom(1024)
                     #sugg = sugg.decode()
-                    #print("Suggestion {}: '{}'".format(i, sugg))
+                    print("Suggestion {}: '{}'".format(i, sugg))
                 if text != stri:
                     for i in range(0,len(stri)):
                         ser.write(bytearray([17,8,18,8]))
