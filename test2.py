@@ -42,6 +42,10 @@ def main():
                 s.sendto(suggestions[0].term.encode(), source)
                 
                 s.sendto(str(len(suggestions)).encode(), source)
+                
+                for i in range(0, len(suggestions)):
+                    s.sendto(suggestions[i].term.encode(), source)
+
 
             except Exception as e:
                 print(e)
