@@ -41,7 +41,7 @@ def main():
                     print("Test2 Output: {}, {}, {}".format(suggestion.term, suggestion.count, suggestion.distance))
                 s.sendto(suggestions[0].term.encode(), source)
                 
-                s.sendto(len(suggestion).term.encode(), source)
+                s.sendto(str(len(suggestions)).encode(), source)
 
             except Exception as e:
                 print(e)
