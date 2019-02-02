@@ -35,7 +35,7 @@ def main():
                 # (max_edit_distance_lookup <= max_edit_distance_dictionary)
                 max_edit_distance_lookup = 2
                 suggestion_verbosity = Verbosity.CLOSEST  # TOP, CLOSEST, ALL
-                suggestions = sym_spell.lookup_compound(input_term, max_edit_distance_lookup)
+                suggestions = sym_spell.lookup(input_term, suggestion_verbosity,max_edit_distance_lookup)
                 # display suggestion term, term frequency, and edit distance
                 for suggestion in suggestions:
                     print("Test2 Output: {}, {}, {}".format(suggestion.term, suggestion.count, suggestion.distance))
