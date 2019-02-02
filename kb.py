@@ -24,8 +24,8 @@ def on_press(key):
                 print("suggestion 0: '{}'".format(text))
                 print("num: {}".format(repr(num)))
                 for i in range(0, num-1):
-                    sugg = s.recvfrom(1024)
-                    #sugg = sugg.decode()
+                    sugg, sourcen = s.recvfrom(1024)
+                    sugg = sugg.decode()
                     print("Suggestion {}: '{}'".format(i, sugg))
                 if text != stri:
                     for i in range(0,len(stri)):
