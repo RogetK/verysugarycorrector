@@ -67,8 +67,8 @@ def on_press(key):
             ser.write(bytearray([18,]))
             ser.write(key.char.encode())
             ser.flush()
-            #pass
-            #print('alphanumeric key {0} pressed'.format(key.char))
+            
+            print('alphanumeric key {0} pressed'.format(str(key)))
     except AttributeError:
         print('special key {0} pressed'.format(
             key))
