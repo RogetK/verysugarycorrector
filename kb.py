@@ -22,7 +22,7 @@ def on_press(key):
                 text = text.decode()
                 num = int(num.decode())
                 print("suggestion 0: '{}'".format(text))
-                print("num: {}".format(num))
+                print("num: {}".format(repr(num)))
                 for i in range(0, num-1):
                     sugg = s.recvfrom(1024)
                     sugg = sugg.decode()
