@@ -21,7 +21,7 @@ def on_press(key):
                 num, source2 = s.recvfrom(1024)
                 #text = text.decode()
                 num = int(num.decode())
-                print("suggestion 0: '{}'".format(text))
+                #print("suggestion 0: '{}'".format(text))
                 print("num: {}".format(repr(num)))
                 text = stri
                 for i in range(0, num):
