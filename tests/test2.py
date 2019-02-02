@@ -39,7 +39,7 @@ def main():
                 # display suggestion term, term frequency, and edit distance
                 for suggestion in suggestions:
                     print("Test2 Output: {}, {}, {}".format(suggestion.term, suggestion.count, suggestion.distance))
-                s.sendto(suggestions[0].term.encode(), source)
+#               s.sendto(suggestions[0].term.encode(), source)
                 
                 s.sendto(str(len(suggestions)).encode(), source)
                 
