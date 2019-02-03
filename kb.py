@@ -17,6 +17,13 @@ punctuation2 = {"Key.space": 32, "Key.enter": 10, "','": 44, "'.'": 46, "'!'": 3
    "'>'": 62, "'@'": 64, "'['": 91, "'\\'": 92, "']'": 93, "'^'": 94, "'`'": 96, "'{'": 123, 
    "'|'": 124, "'}'": 125, "'~'": 126}
 
+special = {"Key.ctrl": 128, "Key.shift": 129, "Key.alt": 130, "Key.cmd": 131, "Key.ctrl_r": 132,
+ "Key.shift_r": 133, "Key.up": 218, "Key.down": 217, "Key.left": 216, "Key.right": 215, 
+ "Key.tab": 179, "Key.escape": 177, "Key.insert": 209, "Key.delete": 212, "Key.page_up": 211, 
+ "Key.page_down": 214, "Key.home": 210, "Key.end": 213, "Key.caps_lock": 193, "Key.f1": 194,
+ "Key.f2": 195, "Key.f3": 196, "Key.f4": 197, "Key.f5": 198, "Key.f6": 199, "Key.f7": 200,
+ "Key.f8": 201, "Key.f9": 202, "Key.f10": 203, "Key.f11": 204, "Key.f12": 205}
+
 def write_punct2(key):
     if str(key) in punctuation2.keys():
         code = punctuation2[str(key)]
