@@ -21,6 +21,7 @@ def write_punct2(key):
         code = punctuation2[str(key)]
         ser.write(bytearray([17,code,18,code]))
         ser.flush()
+        print("Serial: {}".format(char(code)))
 
 def write_punct(key):
     if str(key) == "Key.space":
@@ -54,6 +55,7 @@ def write_punct(key):
     elif str(key) == "'+'":
         ser.write(bytearray([17,43,18,33]))
     ser.flush()
+
     
 
 def autocorrect_to(stri, text):
@@ -85,7 +87,8 @@ def autocorrect_to(stri, text):
             ser.write(char.encode())
             ser.flush()
         print("Serial: {}{}".format(head, tail))
-
+    else:
+        print("Serial: leave as {}".format(stri))
 
 def on_press(key):
     global stri
@@ -95,7 +98,7 @@ def on_press(key):
         if str(key) in punctuation2:
             print("{}".format(stri))
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-                s.sendto(stri.encode(), (host,port))
+                s.sendto(stri.lower().encode(), (host,port))
                 #text, source = s.recvfrom(1024)
                 num, source2 = s.recvfrom(1024)
                 #text = text.decode()
