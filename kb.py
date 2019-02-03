@@ -80,7 +80,7 @@ def write_punct(key):
 
     
 
-def autocorrect_to(stri, text):
+def autocorrect_to(stri, text, key):
     if stri != "" and text != (stri[0].lower()+stri[1:]):
         for i in range(0,len(stri)+1):
             ser.write(bytearray([17,8,18,8]))
@@ -109,6 +109,22 @@ def autocorrect_to(stri, text):
             ser.write(char.encode())
             ser.flush()
         print("Serial: '{}{}'".format(head, tail))
+        try:
+            if str(key) in punctuation2.keys():
+                write_punct2(key)
+            else:
+                print(key.char)
+                ser.write(bytearray([17,]))
+                ser.write(key.char.encode())
+                ser.write(bytearray([18,]))
+                ser.write(key.char.encode())
+                ser.flush()
+                print("non-punct: {}".format(key.char))
+        except AttributeError:
+            code = special[str(key)]
+            ser.write(bytearray([17,code,18,code]))
+            ser.flush()
+            print("special code: {}".format(code))
     else:
         print("Serial: leave as '{}'".format(stri))
 
