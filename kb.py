@@ -157,7 +157,7 @@ def on_release(key):
                     wtype, sourcem = s.recvfrom(1024)
                     wtype = wtype.decode()
                     print("Word Type {}: {}".format(i, wtype))
-                autocorrect_to(stri, text)
+                autocorrect_to(stri, text, key)
                 up_punct2(key)
                 stri = ""
                 #print("stri: {}".format(stri))
