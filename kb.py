@@ -117,10 +117,10 @@ def on_press(key):
                     print("Suggestion {}: '{}'".format(i, sugg))
                 for i in range(0, num):
                     s.sendto(suggs[i].encode(), (host,portWT))
-                    ntypes, sourcen = recvfrom(1024)
+                    ntypes, sourcen = s.recvfrom(1024)
                     ntypes = int(ntypes.decode())
                     for j in range(0,ntypes):
-                        wtype, sourcem = recvfrom(1024)
+                        wtype, sourcem = s.recvfrom(1024)
                         wtype = wtype.decode()
                         print("Word Type ({},{}): {}".format(i, sugg))
                 autocorrect_to(stri, text)
