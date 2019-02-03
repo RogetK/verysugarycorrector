@@ -20,7 +20,8 @@ def main():
                 input_term, source = s.recvfrom(1024)  # Network input
                 input_term = input_term.decode()
 
-                print(nltk.pos_tag(input_term))
+                words = nltk.word_tokenize(input_term)
+                print(nltk.pos_tag())
 
                 meaning = dictionary.meaning(input_term)
                 if meaning == None:
