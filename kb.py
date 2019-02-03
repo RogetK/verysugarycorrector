@@ -74,11 +74,23 @@ def on_press(key):
                     if i == 0:
                         text = sugg
                     print("Suggestion {}: '{}'".format(i, sugg))
-                if text != stri and stri != "":
+                if text != stri.lower() and stri != "":
                     for i in range(0,len(stri)):
                         ser.write(bytearray([17,8,18,8]))
                         ser.flush()
-                    for char in text:
+                    if(stri[0].islower()):
+                        ser.write(bytearray([17,]))
+                        ser.write(text[0].encode())
+                        ser.write(bytearray([18,]))
+                        ser.write(text[0].encode())
+                        ser.flush()
+                    else:
+                        ser.write(bytearray([17,]))
+                        ser.write(text[0].upper().encode())
+                        ser.write(bytearray([18,]))
+                        ser.write(text[0].upper().encode())
+                        ser.flush()
+                    for char in text[2:]:
                         ser.write(bytearray([17,]))
                         ser.write(char.encode())
                         ser.write(bytearray([18,]))
