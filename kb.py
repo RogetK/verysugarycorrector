@@ -122,7 +122,7 @@ def on_press(key):
                     for j in range(0,ntypes):
                         wtype, sourcem = s.recvfrom(1024)
                         wtype = wtype.decode()
-                        print("Word Type ({},{}): {}".format(i, sugg))
+                        print("Word Type ({},{}): {}".format(i, j, sugg))
                 autocorrect_to(stri, text)
                 write_punct2(key)
                 stri = ""
