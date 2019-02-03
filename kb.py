@@ -17,7 +17,7 @@ punctuation2 = {"Key.space":32, "Key.enter":"10", "','": 44, "'.'": 46, "'!'": 3
    "'|'": 124, "'}'": 125, "'~'": 126}
 
 def write_punct2(key):
-    if str(key) in punctuation2.keys:
+    if str(key) in punctuation2.keys():
         code = punctuation2[str(key)]
         ser.write(bytearray([17,code,18,code]))
         ser.flush()
