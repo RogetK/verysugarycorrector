@@ -19,11 +19,13 @@ def main():
                 input_term = input_term.decode()
 
                 meaning = dictionary.meaning(input_term)
-                print(meaning)
+                print("Meaning: {}".format(meaning))
                 wordtypes = meaning.keys()
+                print("Types: {}".format(wordtypes))
 
                 s.sendto(str(len(wordtypes)).encode(), source)
                 for wordtype in wordtypes:
+                    print("wordtype: {}".format(wordtype))
                     s.sendto(wordtype.encode(), source)
             except Exception as e:
                 print(e)
