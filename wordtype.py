@@ -10,7 +10,7 @@ host = "127.0.0.1"
 port = 1236
 
 def main():
-	with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         s.bind((host, port))
         while(True):
             # lookup suggestions for single-word input strings
@@ -23,7 +23,7 @@ def main():
 
                 s.sendto(str(len(wordtypes)).encode(), source)
                 for wordtype in wordtypes:
-                	s.sendto(wordtype.encode(), source)
+                    s.sendto(wordtype.encode(), source)
             except Exception as e:
                 print(e)
                 time.sleep(1)
