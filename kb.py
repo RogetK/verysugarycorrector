@@ -61,7 +61,7 @@ def autocorrect_to(stri, text):
         for i in range(0,len(stri)):
             ser.write(bytearray([17,8,18,8]))
             ser.flush()
-        if(stri[0].islower()):
+        if(stri[0].isupper()):
             ser.write(bytearray([17,]))
             ser.write(text[0].encode())
             ser.write(bytearray([18,]))
