@@ -19,6 +19,8 @@ def main():
                 input_term = input_term.decode()
 
                 meaning = dictionary.meaning(input_term)
+                if meaning == None:
+                    continue
                 print("Meaning: {}".format(meaning))
                 wordtypes = meaning.keys()
                 print("Types: {}".format(wordtypes))
