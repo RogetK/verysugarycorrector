@@ -21,7 +21,7 @@ def write_punct2(key):
         code = punctuation2[str(key)]
         ser.write(bytearray([17,code,18,code]))
         ser.flush()
-        print("Serial: {}".format(chr(code)))
+        print("Serial: '{}'".format(chr(code)))
 
 def write_punct(key):
     if str(key) == "Key.space":
@@ -86,9 +86,9 @@ def autocorrect_to(stri, text):
             ser.write(bytearray([18,]))
             ser.write(char.encode())
             ser.flush()
-        print("Serial: {}{}".format(head, tail))
+        print("Serial: '{}{}'".format(head, tail))
     else:
-        print("Serial: leave as {}".format(stri))
+        print("Serial: leave as '{}'".format(stri))
 
 def on_press(key):
     global stri
@@ -115,12 +115,13 @@ def on_press(key):
                 autocorrect_to(stri, text)
                 write_punct2(key)
                 stri = ""
-                print("stri: {}".format(stri))
+                #print("stri: {}".format(stri))
             stri = ""
-            print("stri: {}".format(stri))
+            #print("stri: {}".format(stri))
         elif str(key) == "Key.backspace":
             ser.write(bytearray([17,8,18,8]))
             ser.flush()
+            stri = stri[:-1]
         else:
             stri += key.char
             print("stri: {}".format(stri))
