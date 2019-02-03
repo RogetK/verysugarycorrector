@@ -21,7 +21,7 @@ def write_punct2(key):
         code = punctuation2[str(key)]
         ser.write(bytearray([17,code,18,code]))
         ser.flush()
-        print("Serial: {}".format(char(code)))
+        print("Serial: {}".format(chr(code)))
 
 def write_punct(key):
     if str(key) == "Key.space":
