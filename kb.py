@@ -172,10 +172,10 @@ def on_press(key):
     print('{0} pressed'.format(
         key))
     try:
-        print(key.char)
         if str(key) in punctuation2.keys():
             down_punct2(key)
         else:
+            print(key.char)
             ser.write(bytearray([17,]))
             ser.write(key.char.encode())
             ser.flush()
