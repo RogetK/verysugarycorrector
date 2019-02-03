@@ -65,21 +65,21 @@ def autocorrect_to(stri, text):
             ser.write(bytearray([17,8,18,8]))
             ser.flush()
         if(stri[0].isupper()):
+            head = text[0].upper()
             ser.write(bytearray([17,]))
-            ser.write(text[0].encode())
+            ser.write(head.encode())
             ser.write(bytearray([18,]))
-            ser.write(text[0].encode())
+            ser.write(head.encode())
             ser.flush()
             #print("Serial: {}".format(text[0].upper()))
-            head = text[0].upper()
         else:
+            head = text[0]
             ser.write(bytearray([17,]))
-            ser.write(text[0].upper().encode())
+            ser.write(head.encode())
             ser.write(bytearray([18,]))
-            ser.write(text[0].upper().encode())
+            ser.write(head.upper().encode())
             ser.flush()
             #print("Serial: {}".format(text[0]))
-            head = text[0]
         tail = str(text[1:])
         for char in tail:
             ser.write(bytearray([17,]))
