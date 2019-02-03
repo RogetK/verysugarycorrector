@@ -4,7 +4,9 @@ from PyDictionary import PyDictionary
 
 import os, socket, time, nltk
 
+nltk.download('averaged_perceptron_tagger')
 dictionary = PyDictionary()
+print("Init finished")
 
 host = "127.0.0.1"
 port = 1236
