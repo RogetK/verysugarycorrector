@@ -36,14 +36,14 @@ def up_punct2(key):
         code = punctuation2[str(key)]
         ser.write(bytearray([18,code]))
         ser.flush()
-        print("Serial: '{}'".format(chr(code)))
+        print("Serial up: '{}'".format(chr(code)))
 
 def down_punct2(key):
     if str(key) in punctuation2.keys():
         code = punctuation2[str(key)]
         ser.write(bytearray([17,code]))
         ser.flush()
-        print("Serial: '{}'".format(chr(code)))
+        print("Serial down: '{}'".format(chr(code)))
 
 def write_punct(key):
     if str(key) == "Key.space":
@@ -179,10 +179,12 @@ def on_press(key):
             ser.write(bytearray([17,]))
             ser.write(key.char.encode())
             ser.flush()
+            print("non-punct: {}".format(key.char))
     except AttributeError:
         code = special[str(key)]
         ser.write(bytearray([18,code]))
         ser.flush()
+        print("special code: {}".format(code))
     #if key == keyboard.Key.esc:
     #    # Stop listener
     #    return False
