@@ -158,9 +158,9 @@ def on_release(key):
             ser.write(key.char.encode())
             ser.flush()
             
-            print('alphanumeric key {0} pressed'.format(str(key)))
+            print('alphanumeric key {0} released'.format(str(key)))
     except AttributeError:
-        print('special key {0} pressed'.format(
+        print('special key {0} released'.format(
             key))
         if str(key) in special.keys():
             code = special[str(key)]
@@ -182,7 +182,7 @@ def on_press(key):
             print("non-punct: {}".format(key.char))
     except AttributeError:
         code = special[str(key)]
-        ser.write(bytearray([18,code]))
+        ser.write(bytearray([17,code]))
         ser.flush()
         print("special code: {}".format(code))
     #if key == keyboard.Key.esc:
