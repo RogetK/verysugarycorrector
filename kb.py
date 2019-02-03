@@ -152,16 +152,16 @@ def on_press(key):
             key))
         if str(key) in special.keys():
             code = special[str(key)]
-            ser.write(bytesarray([17,code,18,code]))
+            ser.write(bytearray([17,code,18,code]))
             ser.flush()
         
 
 def on_release(key):
     print('{0} released'.format(
         key))
-    if key == keyboard.Key.esc:
-        # Stop listener
-        return False
+    #if key == keyboard.Key.esc:
+    #    # Stop listener
+    #    return False
 
 # Collect events until released
 with keyboard.Listener(
