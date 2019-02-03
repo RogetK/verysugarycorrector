@@ -21,20 +21,23 @@ def main():
                 input_term = input_term.decode()
 
                 words = nltk.word_tokenize(input_term)
-                print(nltk.pos_tag(words))
+                meanings = nltk.pos_tag(words)
+                print(meanings)
 
-                meaning = dictionary.meaning(input_term)
-                if meaning == None:
-                    s.sendto("0".encode(), source)
-                else:
-                    print("Meaning: {}".format(meaning))
-                    wordtypes = meaning.keys()
-                    print("Types: {}".format(wordtypes))
+                s.sendto(meanings[0][1].encode(), source)
 
-                    s.sendto(str(len(wordtypes)).encode(), source)
-                    for wordtype in wordtypes:
-                        print("wordtype: {}".format(wordtype))
-                        s.sendto(wordtype.encode(), source)
+                # meaning = dictionary.meaning(input_term)
+                # if meaning == None:
+                #     s.sendto("0".encode(), source)
+                # else:
+                #     print("Meaning: {}".format(meaning))
+                #     wordtypes = meaning.keys()
+                #     print("Types: {}".format(wordtypes))
+
+                #     s.sendto(str(len(wordtypes)).encode(), source)
+                #     for wordtype in wordtypes:
+                #         print("wordtype: {}".format(wordtype))
+                #         s.sendto(wordtype.encode(), source)
             except Exception as e:
                 print(e)
                 time.sleep(1)
