@@ -59,7 +59,7 @@ def write_punct(key):
     
 
 def autocorrect_to(stri, text):
-    if text != (stri[0].lower()+stri[1:]) and stri != "":
+    if stri != "" and text != (stri[0].lower()+stri[1:]):
         for i in range(0,len(stri)):
             ser.write(bytearray([17,8,18,8]))
             ser.flush()
