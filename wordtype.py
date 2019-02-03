@@ -21,7 +21,7 @@ def main():
                 input_term = input_term.decode()
 
                 words = nltk.word_tokenize(input_term)
-                print(nltk.pos_tag())
+                print(nltk.pos_tag(words))
 
                 meaning = dictionary.meaning(input_term)
                 if meaning == None:
