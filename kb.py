@@ -2,7 +2,8 @@ from pynput import keyboard
 import socket, serial
 
 host = "127.0.0.1"
-port = 1235
+portAC = 1235
+portWT = 1236
 
 stri = ""
 
@@ -98,20 +99,30 @@ def on_press(key):
         if str(key) in punctuation2:
             print("{}".format(stri))
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-                s.sendto(stri.lower().encode(), (host,port))
+                s.sendto(stri.lower().encode(), (host,portAC))
                 #text, source = s.recvfrom(1024)
                 num, source2 = s.recvfrom(1024)
                 #text = text.decode()
                 num = int(num.decode())
                 #print("suggestion 0: '{}'".format(text))
                 print("num: {}".format(repr(num)))
+                suggs = []
                 text = stri
                 for i in range(0, num):
                     sugg, sourcen = s.recvfrom(1024)
                     sugg = sugg.decode()
+                    suggs.append(sugg)
                     if i == 0:
                         text = sugg
                     print("Suggestion {}: '{}'".format(i, sugg))
+                for i in range(0, num):
+                    s.sendto(suggs[i], (host,portWT))
+                    ntypes, sourcen = recvfrom(1024)
+                    ntypes = int(ntypes.decode())
+                    for j in range(0,ntypes):
+                        wtype, sourcem = recvfrom(1024)
+                        wtype = wtype.decode()
+                        print("Word Type ({},{}): {}".format(i, sugg))
                 autocorrect_to(stri, text)
                 write_punct2(key)
                 stri = ""
