@@ -17,7 +17,7 @@ punctuation2 = {"Key.space": 32, "Key.enter": 10, "','": 44, "'.'": 46, "'!'": 3
    "'>'": 62, "'@'": 64, "'['": 91, "'\\'": 92, "']'": 93, "'^'": 94, "'`'": 96, "'{'": 123, 
    "'|'": 124, "'}'": 125, "'~'": 126}
 
-special = {"Key.ctrl": 128, "Key.shift": 129, "Key.alt": 130, "Key.cmd": 131, "Key.ctrl_r": 132,
+special = {"Key.space": 32, "Key.enter": 10, "Key.ctrl": 128, "Key.shift": 129, "Key.alt": 130, "Key.cmd": 131, "Key.ctrl_r": 132,
  "Key.shift_r": 133, "Key.up": 218, "Key.down": 217, "Key.left": 216, "Key.right": 215, 
  "Key.tab": 179, "Key.escape": 177, "Key.insert": 209, "Key.delete": 212, "Key.page_up": 211, 
  "Key.page_down": 214, "Key.home": 210, "Key.end": 213, "Key.caps_lock": 193, "Key.f1": 194,
