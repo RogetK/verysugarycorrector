@@ -173,7 +173,7 @@ def on_press(key):
         key))
     try:
         print(key.char)
-        if str(key) in punctuation2.keys:
+        if str(key) in punctuation2.keys():
             down_punct2(key)
         else:
             ser.write(bytearray([17,]))
