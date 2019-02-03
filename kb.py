@@ -77,13 +77,13 @@ def autocorrect_to(stri, text):
             ser.flush()
             #print("Serial: {}".format(text[0]))
             head = text[0]
-        for char in text[2:]:
+        tail = str(text[1:])
+        for char in tail:
             ser.write(bytearray([17,]))
             ser.write(char.encode())
             ser.write(bytearray([18,]))
             ser.write(char.encode())
             ser.flush()
-        tail = str(text[2:])
         print("Serial: {}{}".format(head, tail))
 
 
