@@ -20,6 +20,7 @@ def main():
 
                 meaning = dictionary.meaning(input_term)
                 if meaning == None:
+                    s.sendto("0".encode(), source)
                     continue
                 print("Meaning: {}".format(meaning))
                 wordtypes = meaning.keys()
