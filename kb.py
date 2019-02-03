@@ -81,7 +81,7 @@ def autocorrect_to(stri, text):
             ser.write(bytearray([18,]))
             ser.write(char.encode())
             ser.flush()
-        print("{}{}".format(char(8),text[2:]))
+        print(char(8) + "{}".format(text[2:]))
 
 
 def on_press(key):
