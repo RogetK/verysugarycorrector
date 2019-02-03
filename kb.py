@@ -67,18 +67,21 @@ def autocorrect_to(stri, text):
             ser.write(bytearray([18,]))
             ser.write(text[0].encode())
             ser.flush()
+            print("Serial: {}".format(text[0].upper()))
         else:
             ser.write(bytearray([17,]))
             ser.write(text[0].upper().encode())
             ser.write(bytearray([18,]))
             ser.write(text[0].upper().encode())
             ser.flush()
+            print("Serial: {}".format(text[0]))
         for char in text[2:]:
             ser.write(bytearray([17,]))
             ser.write(char.encode())
             ser.write(bytearray([18,]))
             ser.write(char.encode())
             ser.flush()
+        print("{}{}".format(char(8),text[2:]))
 
 
 def on_press(key):
