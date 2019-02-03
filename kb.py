@@ -116,7 +116,7 @@ def on_press(key):
                         text = sugg
                     print("Suggestion {}: '{}'".format(i, sugg))
                 for i in range(0, num):
-                    s.sendto(suggs[i], (host,portWT))
+                    s.sendto(suggs[i].encode(), (host,portWT))
                     ntypes, sourcen = recvfrom(1024)
                     ntypes = int(ntypes.decode())
                     for j in range(0,ntypes):
