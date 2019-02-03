@@ -19,6 +19,7 @@ def main():
                 input_term = input_term.decode()
 
                 meaning = dictionary.meaning(input_term)
+                print(meaning)
                 wordtypes = meaning.keys()
 
                 s.sendto(str(len(wordtypes)).encode(), source)
