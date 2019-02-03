@@ -2,7 +2,7 @@
 
 from PyDictionary import PyDictionary
 
-import os, socket, time
+import os, socket, time, nltk
 
 dictionary = PyDictionary()
 
@@ -17,6 +17,8 @@ def main():
             try:
                 input_term, source = s.recvfrom(1024)  # Network input
                 input_term = input_term.decode()
+
+                print(nltk.pos_tag(input_term))
 
                 meaning = dictionary.meaning(input_term)
                 if meaning == None:
