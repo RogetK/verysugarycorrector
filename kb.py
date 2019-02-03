@@ -31,6 +31,20 @@ def write_punct2(key):
         ser.flush()
         print("Serial: '{}'".format(chr(code)))
 
+def up_punct2(key):
+    if str(key) in punctuation2.keys():
+        code = punctuation2[str(key)]
+        ser.write(bytearray([18,code]))
+        ser.flush()
+        print("Serial: '{}'".format(chr(code)))
+
+def down_punct2(key):
+    if str(key) in punctuation2.keys():
+        code = punctuation2[str(key)]
+        ser.write(bytearray([17,code]))
+        ser.flush()
+        print("Serial: '{}'".format(chr(code)))
+
 def write_punct(key):
     if str(key) == "Key.space":
         ser.write(bytearray([17,32,18,32]))
@@ -98,7 +112,7 @@ def autocorrect_to(stri, text):
     else:
         print("Serial: leave as '{}'".format(stri))
 
-def on_press(key):
+def on_release(key):
     global stri
     try:
         #print(key)
@@ -128,7 +142,7 @@ def on_press(key):
                     wtype = wtype.decode()
                     print("Word Type {}: {}".format(i, wtype))
                 autocorrect_to(stri, text)
-                write_punct2(key)
+                up_punct2(key)
                 stri = ""
                 #print("stri: {}".format(stri))
             stri = ""
@@ -140,8 +154,6 @@ def on_press(key):
         else:
             stri += key.char
             print("stri: {}".format(stri))
-            ser.write(bytearray([17,]))
-            ser.write(key.char.encode())
             ser.write(bytearray([18,]))
             ser.write(key.char.encode())
             ser.flush()
@@ -152,13 +164,25 @@ def on_press(key):
             key))
         if str(key) in special.keys():
             code = special[str(key)]
-            ser.write(bytearray([17,code,18,code]))
+            ser.write(bytearray([18,code]))
             ser.flush()
         
 
-def on_release(key):
-    print('{0} released'.format(
+def on_press(key):
+    print('{0} pressed'.format(
         key))
+    try:
+        print(key.char)
+        if str(key) in punctuation2.keys:
+            down_punct2(key)
+        else:
+            ser.write(bytearray([17,]))
+            ser.write(key.char.encode())
+            ser.flush()
+    except AttributeError:
+        code = special[str(key)]
+        ser.write(bytearray([18,code]))
+        ser.flush()
     #if key == keyboard.Key.esc:
     #    # Stop listener
     #    return False
