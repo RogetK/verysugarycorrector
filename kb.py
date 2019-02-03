@@ -150,6 +150,10 @@ def on_press(key):
     except AttributeError:
         print('special key {0} pressed'.format(
             key))
+        if str(key) in special.keys():
+            code = special[str(key)]
+            ser.write(bytesarray([17,code,18,code]))
+            ser.flush()
         
 
 def on_release(key):
