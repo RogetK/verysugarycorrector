@@ -21,15 +21,15 @@ def main():
                 meaning = dictionary.meaning(input_term)
                 if meaning == None:
                     s.sendto("0".encode(), source)
-                    continue
-                print("Meaning: {}".format(meaning))
-                wordtypes = meaning.keys()
-                print("Types: {}".format(wordtypes))
+                else:
+                    print("Meaning: {}".format(meaning))
+                    wordtypes = meaning.keys()
+                    print("Types: {}".format(wordtypes))
 
-                s.sendto(str(len(wordtypes)).encode(), source)
-                for wordtype in wordtypes:
-                    print("wordtype: {}".format(wordtype))
-                    s.sendto(wordtype.encode(), source)
+                    s.sendto(str(len(wordtypes)).encode(), source)
+                    for wordtype in wordtypes:
+                        print("wordtype: {}".format(wordtype))
+                        s.sendto(wordtype.encode(), source)
             except Exception as e:
                 print(e)
                 time.sleep(1)
