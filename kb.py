@@ -22,7 +22,7 @@ special = {"Key.space": 32, "Key.enter": 10, "Key.ctrl": 128, "Key.shift": 129, 
  "Key.tab": 179, "Key.escape": 177, "Key.insert": 209, "Key.delete": 212, "Key.page_up": 211, 
  "Key.page_down": 214, "Key.home": 210, "Key.end": 213, "Key.caps_lock": 193, "Key.f1": 194,
  "Key.f2": 195, "Key.f3": 196, "Key.f4": 197, "Key.f5": 198, "Key.f6": 199, "Key.f7": 200,
- "Key.f8": 201, "Key.f9": 202, "Key.f10": 203, "Key.f11": 204, "Key.f12": 205}
+ "Key.f8": 201, "Key.f9": 202, "Key.f10": 203, "Key.f11": 204, "Key.f12": 205, "Key.backspace": 178}
 
 def write_punct2(key):
     if str(key) in punctuation2.keys():
@@ -148,7 +148,8 @@ def on_release(key):
             stri = ""
             #print("stri: {}".format(stri))
         elif str(key) == "Key.backspace":
-            ser.write(bytearray([17,8,18,8]))
+            code = special["Key.backspace"]
+            ser.write(bytearray([17,code,18,code]))
             ser.flush()
             stri = stri[:-1]
         else:
